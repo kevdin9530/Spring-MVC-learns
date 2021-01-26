@@ -1,0 +1,96 @@
+You can either use XML file to set config for ur Spring MVC
+or you can configure with java code. Example is DemoAppConfig and 
+MySpringMvcDispatcherServletInitializer
+
+Developing Controller and Views - Development Process: 
+- Create controller class
+- Define controller method
+- Add request mapping to controller method
+- return view name
+- development view page
+
+To create controller class. simply create a class and add Anno @Controller
+To define controller method, go to your controller class, create a method
+with any name u like and your return can be any type too. However
+you need to add @RequestMapping("") to define the URL for your controller
+
+in the example, the controller will return a string but according to our
+configuration file, the name return will add suffix-prefix and find the
+path to that file accordingly.
+
+We need to create a page for the main-menu example
+It can be any regular html or jsp file
+
+OBS! NOTE TO SELF. Remember to config context component scan on right package path
+
+Now we going to learn how to read form data with Spring MVC
+development process:
+- create controller class
+- show html form (create controller method to show html form and create 
+view page for HTMl form)
+- process html form(create controller and development view page for html form)
+
+
+Now we are going to adding data to spring model
+The Model is a container for your app data
+In your controller code: 
+- You can put anything in the model
+- string,object, info from db...
+and your view page (JSP) can access the data from the model.
+
+Code example: 
+- create new method to access form data
+- read the form data
+- convert the data
+- add new version of the data to the model.
+
+to access resources simply add the following in your spring config file
+<mvc:resources mapping="/resources/**" location="/resources/"></mvc:resources>
+
+for your view page, example of adding resources:
+<img src="${pageContext.request.contextPath}/resources/images/spring-logo.png">
+There is a exampleHTMLCSS.txt which u can check out.
+
+
+Reading HTML Form Data with @RequestParam Annotation
+- create a method to process form data
+- read form data
+- convert data
+- add new data version to the model 
+
+Add controller, request mapping. 
+by doing this you can:
+- serves as parent mapping for the controller
+- all request mappings on methods in the controller are relative
+- similar to folder directory structure
+For practice we will add another controller
+In this case, we will encounter an error 500. By checking the
+ log or console. We can see it said root cause: Ambiguous mapping.
+ Basically it means that we cant use it becuz it already in use.
+ So to differ one controller to another, you need to add a
+ RequestMapping above your controller class and define different
+ directory.
+ 
+now we move on to Spring MVC form tag
+
+basically, html form are used to get input from the user and this time
+we will learn the form with spring.
+Spring MVC Form Tags are the building block for web page
+Form tag are configurable and reusable for a web page
+
+Spring MVC Form tag can make use of DATA BINDING and it allows 
+to automatically set/retrieve data from java object/bean
+
+The form tag will create html for the user
+To know more about spring mvc form tag
+go to: https://docs.spring.io/spring-framework/docs/5.0.2.RELEASE/spring-framework-reference/web.html#mvc-view-jsp-tags
+
+As for the web structure, u can use a normal jsp page
+and simply add some spring mvc form tag. You can just mix them. 
+
+To ref this tags in jsp file, you need to add the following in beginning of 
+ur file
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
+ 
+
