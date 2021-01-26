@@ -1,0 +1,53 @@
+package com.spring.mvcdemo;
+
+import java.util.LinkedHashMap;
+
+public class Student {
+	
+	private String firstName;
+	private String lastName;
+	private String country;
+	private LinkedHashMap<String,String> countryOptions;
+	
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public Student() {
+		//populate country options: used ISO country code
+		countryOptions = new LinkedHashMap<>();
+		//Usually you want to read from a file for shorten like this but
+		//we dont have a file so we input it by hand
+		countryOptions.put("BR", "Brazil");
+		countryOptions.put("FR", "France");
+		countryOptions.put("SWE", "Sweden");
+		countryOptions.put("VN", "Vietnam");
+		countryOptions.put("US", "United States");
+		countryOptions.put("IN", "Indian");
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public LinkedHashMap<String, String> getCountryOptions() {
+		return countryOptions;
+	}
+	
+}

@@ -12,5 +12,7 @@
 	<hr>
 	
 <a href="showForm">Hello World form</a>
+<br/>
+<a href="student/showForm">Student form</a>
 </body>
 </html>

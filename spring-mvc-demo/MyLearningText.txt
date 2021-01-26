@@ -71,7 +71,7 @@ In this case, we will encounter an error 500. By checking the
  RequestMapping above your controller class and define different
  directory.
  
-now we move on to Spring MVC form tag
+/////////////////////// Spring MVC form tag////////////////////
 
 basically, html form are used to get input from the user and this time
 we will learn the form with spring.
@@ -92,5 +92,79 @@ To ref this tags in jsp file, you need to add the following in beginning of
 ur file
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
+1st tag form we go through is the text field
+so in order to add the form u must add a model attribute
+It will be the bean for holding the form of data binding
+
+ Inside jsp form,
+ in the model attribute u will add <form:input path = "firstName"/>
+ When spring mvc loads the form, it will call student.getFirstName()
  
+ To read the data, we can use @ModelAttribute("attribute_name")
+ and bind it to a variable.
+ 
+ so following the development process and practice:
+ - Create student class
+ - create student controller class
+ - create new html form
+ - create form processing code
+ - create confirmation page
+ 
+ when u get value of an attribute from the model in html or jsc
+ u only need to write attribute.value then spring mvc will
+ automatically call Attribute.getValue() method. 
+
+now we move on to drop down tag
+its similar to HTML <select> Tag. 
+ex in HTML : 	
+<select name ="country">
+	<option> country_name1 </option>
+	<option> country_name2 </option>
+	...
+<select/>
+
+in spring mvc, the drop down tag is presented by 
+<form:select path="name">
+	<form:option value ="code" label ="diplay_name"/>
+</form:select>
+so we can practice with the following Development Process:
+- update html form
+- update student class 
+- update process page
+
+However, you have to write each option one by one and this will be a hassle
+instead we can read a list of country with a java class.
+
+!!!OBS!! If you want to read data from a properties file
+1.you need to put the file in WEB-INF folder
+2.update header section in spring config file
+Following example code:
+ml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+        xmlns:context="http://www.springframework.org/schema/context" 
+        xmlns:mvc="http://www.springframework.org/schema/mvc" 
+        xmlns:util="http://www.springframework.org/schema/util" 
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xsi:schemaLocation="
+            http://www.springframework.org/schema/beans     
+            http://www.springframework.org/schema/beans/spring-beans.xsd     
+            http://www.springframework.org/schema/context     
+            http://www.springframework.org/schema/context/spring-context.xsd     
+            http://www.springframework.org/schema/mvc         
+            http://www.springframework.org/schema/mvc/spring-mvc.xsd 
+            http://www.springframework.org/schema/util     
+            http://www.springframework.org/schema/util/spring-util.xsd">
+            
+3.After that create a bean in spring config file and add following to use
+<util:properties  id="countryOptions" location="classpath:../file_name.properties" />
+4.1 import java.util.Map; in your controller class
+4.2 inject data with @Value 
+ex: @Value("#{countryOptions}") 
+private Map<String, String> countryOptions;
+4.3 Add those in data in your model
+ex: theModel.addAttribute("theCountryOptions", countryOptions); 
+4.4 use that attribute in your jsp page with given attribute name
+ex: <form:options items="${theCountryOptions}" />
+4.5 Remove old reference that doesnt have with the file..
+
 
