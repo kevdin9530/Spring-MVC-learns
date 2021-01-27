@@ -1,0 +1,25 @@
+    private LinkedHashMap<String, String> favoriteLanguageOptions;
+
+In your constructor, populate the data
+
+        // populate favorite language options
+        favoriteLanguageOptions = new LinkedHashMap<>();
+
+        // parameter order: value, display label
+        //
+        favoriteLanguageOptions.put("Java", "Java");
+        favoriteLanguageOptions.put("C#", "C#");
+        favoriteLanguageOptions.put("PHP", "PHP");
+        favoriteLanguageOptions.put("Ruby", "Ruby");        
+
+Add getter method
+
+    public LinkedHashMap<String, String> getFavoriteLanguageOptions() {
+        return favoriteLanguageOptions;
+    }
+    
+    2. Reference the data in your form
+
+        Favorite Language:
+        
+        <form:radiobuttons path="favoriteLanguage" items="${student.favoriteLanguageOptions}"  />

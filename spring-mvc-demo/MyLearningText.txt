@@ -167,4 +167,107 @@ ex: theModel.addAttribute("theCountryOptions", countryOptions);
 ex: <form:options items="${theCountryOptions}" />
 4.5 Remove old reference that doesnt have with the file..
 
+Form tag - Radio Buttons> 
+tag in spring mvc is <form:radiobutton>
+ex: 
+Java <form:radiobutton path="dataBinding" value="Java"/>
+path will indicate the call attribute.setDataBinding() method 
+value is the display on the template.
+You can populate the radio button the same as selectlist above
+Check RadioButtonPopulateInJava.java for example.
+
+Formtag - Check Box
+use <form:checkbox>
+because check box is a multiple choice so it require an array or a list to
+store the data/answers. So in your jsp u need to ref the following jstl tag lib
+<%@ taglib uri ="http://java.sun.com/jsp/jstl/core" prefix ="c"%>
+
+Spring MVC form validation
+The need for validation is:
+- u want to validate the required field
+- valid number in range
+- valid format
+- custom business code
+
+Java has standard bean validiation api
+define metadata model and api
+doesnt tie to either web tier or persistence tier
+available for server-side app and client side javaFX/Swing apps
+For more info, check: http://www.beanvalidation.org
+
+Spring and validation:
+- Spring v4 and above has higher sp bean valid api
+- perfer method for valid when building spring app
+- simply add valid jar to the project
+
+some feature of the bean valid is:
+- required 
+- length
+- numbers
+- regular exp
+- custom valid
+
+Valid Anno example:
+- @NotNull
+- @Min
+- @Size
+- @Pattern
+- @Future/@Past .....
+
+Road map for practice:
+1. set up develop enviroment
+2. required field
+3. number range
+4. valid regexp
+5. custom valid
+
+Setting up development enviroment
+We are using Hibernate for validation
+website: www.hibernate.org/validator
+
+Hibernation validator version is updated based on Jakarta EE9
+Jakarta EE9 is like JavaEE but make by the community (unlike java EE by oracle)
+Jakarta EE9 is not a replacement for Java EE
+
+ so in the import 
+ instead of javax.* packages, we chance to jakarta.* instead
+ More info on Jakatar EE, go to: jakarta.ee/about
+ 
+ !!!!Spring 5 not compatible with HiberValidator7
+ HiberValidator 6.2 is compatible with spring 5 and has same feature as HV7
+ 
+ Development Process
+ - download valid jar file from HV web
+ - Add jar to the project
+ 
+ Form Valid - Required Field
+ Development Process:
+ - ADd valid rule to class @NotNull or something on the class field
+ - display error on html <form:errors> 
+ - perform valid check on controller class @Valid on the model and check BindingResult class error method
+ - update html check
+
+The location of BindingResult is important. It must appear right after the
+model attribute for it to work correctly.
+with @NotNull and @Min, the validation will pass the blank space like            this.
+Becuz its not null and the size is longer than 1. 
+so in order to solve this, we use Anno @InitBinder
+we just need to trim the whitespace in the input
+ 
+ so we made a custom editor in controller with @InitBinder
+ with initbinder it will pre-process all web request coming into controller
+ after that the request can fetch from WebDataBinder class
+ in this class we trim the white space so we use StringTrimmerEditor class which 
+ defined string api. set true in StringTrimmerEditor allow to trim all whitespace to null
+ register editor to the databinder
+ 
+Validation - Number range with @Min @Max
+practice with an new input field between range 0-10
+Development Process
+- add valid rule to class
+- display error to html
+- perform valid in controller 
+- update process 
+
+
 

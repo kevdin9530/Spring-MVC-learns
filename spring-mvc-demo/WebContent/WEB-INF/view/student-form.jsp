@@ -26,6 +26,18 @@
 		<br>
 		<br>
 		<input type="submit" value="Submit" />
+		<br>
+		<br>
+		Favorite language:
+		Java <form:radiobutton path="favoriteLanguage" value ="Java"/>
+		C# <form:radiobutton path="favoriteLanguage" value ="C#"/>
+		Ruby <form:radiobutton path="favoriteLanguage" value ="Ruby"/>
+		<br>
+		<br>
+		Linux <form:checkbox path="operatingSystems" value="Linux"/>
+		Mac OS <form:checkbox path="operatingSystems" value="Mac OS"/>
+		Windows mastuh race <form:checkbox path="operatingSystems" value="Windows"/>
+		
 	</form:form>
 
 

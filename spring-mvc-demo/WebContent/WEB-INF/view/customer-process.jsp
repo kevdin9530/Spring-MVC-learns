@@ -10,21 +10,10 @@
 <title>Student process</title>
 </head>
 <body>
-	The student is: ${student.firstName} ${student.lastName} 
+	The customer is: ${customer.firstName} ${customer.lastName} 
 	<br>
 	<br> 
-	Your country is: ${student.country}
-	<br>
-	<br> 
-	Your fav lang is: ${student.favoriteLanguage}
-	<br>
-	<br> 
-	Your fav operation system is: 
-	<ul>
-		<c:forEach var="temp" items="${student.operatingSystems}">
-			<li>${temp}</li>
-		</c:forEach>
-	</ul>
+Free passes:${customer.freePass }
 
 </body>
 </html>
