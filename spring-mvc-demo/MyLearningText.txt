@@ -269,5 +269,91 @@ Development Process
 - perform valid in controller 
 - update process 
 
+Validation - Regular Expression aka regex
+regex is a sequence to define a search pattern. This pattern is used to find matches string
+regex itself has an own language (advanced topic) n this project assume you know about regex
+more info about regex: https://docs.oracle.com/javase/tutorial/essential/regex
+Testing regex in validation:
+- Add input field for postal code
+- Postal code limit : 5 digits
+Development process: 
+- Add validation rule to customer class
+- Display error msg on html form
+- Update process page.
+
+Validation - Integer field required
+if you use int and your input is either null or space. It will be count as string and not compatible with your data.
+So to fix this simply change int datatype to Integer instead
+furthermore you need to add a custom error message. 
+Development process:
+- create custome error message
+- load custom error msg in spring config
+the custom error in this case is:
+typeMismatch.customer.freePass = Invalid number
+typeMismatch = error type
+customer = spring model attribute
+freePass = field name; 
+due to the custom must follow springframework
+u need to add the following code in ur spring config
+<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basenames"
+			value="resources/message" />
+	</bean>
+	
+Deep dive more in custom error text
+To know more about this, we printout binding result.
+So whenever an error is appear we can see it in the console or a log depend on your code. 
+When printing error it will said about the "codes" which indicate where the error text is.
+Knowing the sources, we can override it with our custom error text.
+
+Validation - Custom Validation
+- Validation based on ur business rule/logic
+- Spring MVC will call our custom validation
+- our custom validation will return a boolean if it pass or fail (T/F)
+For custom validation, we will create a custom java annotation
+ex this case: @CourseCode
+Development Process:
+- create custom validation rule (create custom Anno, a custom class for validation logic, 
+- Add validation rule to class
+- display error msg on html form
+- update process page
+
+In ur custom anno validation u need to have: 
+@Constraint (validatedBy = ???.class) becuz u want this Annotation to be a validation
+the validation is another healper class about the logic of validation
+@Target({ElementType.METHOD}{ElementType.FIELD}) 
+Target anno indicate which type of element can we apply our annotation in. 
+In this case, our anno only apply on METHOD or a FIELD
+@Retention(RetentionPolicy.RUNTIME)
+Retention allows how long our annotation retains it. In this case, we basically keep
+this annotation in the compiled java so we can use/introspect/instrument it during run time
+After adding Anno to your custom Anno, we need to know how many parameter your custom Anno 
+need. After that we add methods of our anno according to our parameter. 
+ex:
+public String value() default "LUV";
+mean that the "value" input in our custom Anno must be type String. if we dont input any then
+the default will be LUV in this case.
+Adding groups
+Adding payloads : provide custom detail about validation failure (severity level, error code ect)
+Your Anno
+
+Moving to making a healper class for the validation
+the custom validation class need to implement ConstraintValidator<CustomAnno_name, data type for validation>
+create a private data suffix that has the same datatype as for validation
+the private datasuffix will get the value from data which we apply the Annotation
+in Inin() method
+The private data will need to override in isValid(HTML form data(entered by user), ConstraintValidatorContext)
+after that use the data and compare according to business logic.
+in our case, we check if the code start with our prefix. so we have data.startWith("")
+!!!!!OBS!!!!!!!!! You need also check Null value else it will create NULLPOINTEREXCEPTION error
+!!!EXTRA: you can update your Anno to check an array of String too. 
+basically the method value() should have String [] value() default{}...
+And your helper validation class should 
+ 
+
+
+ 
+
 
 

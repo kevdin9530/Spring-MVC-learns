@@ -31,6 +31,8 @@ public class CustomerController {
 	// the model attribute must have the correct name
 	public String processForm(@Valid @ModelAttribute("customer") Customer c, BindingResult bdResult) {
 
+		System.out.println("Binding result:" + bdResult);
+		System.out.println("/n/n");
 		// log the input data
 		if(bdResult.hasErrors())
 			return "customer-form";
